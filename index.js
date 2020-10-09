@@ -1,15 +1,13 @@
-require('dotenv').config();     // THIS IS WHERE THE API KEYS ARE STORED SO CANNOT BE SEEN BUT ANYONE
-
+require('dotenv').config();     // THIS IS WHERE THE API KEYS ARE STORED SO CANNOT BE SEEN BY ANYONE
 const express = require('express');
 const hbs = require('express-handlebars');
 const path = require('path');
-const getNews = require('./lib/getNews');
+
+// const bodyParser = required('body-parser');     // NEW CODE
 
 const getWeather = require('./lib/getWeather');
 const newYork = require('./lib/newYork');
 const getNews = require('./lib/getNews');
-
-
 
 const app = express();
 
@@ -20,9 +18,14 @@ app.engine('.hbs', hbs({
 app.set('view engine', '.hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
+// app.use(bodyParser.urlencoded({extended: false}));  // NEW CODE
+// app.use(bodyParser.json());                         // NEW CODE
+
+
 
 /////////////////////////////////////////////////////////////////////////////////
 //  NUMBER ONE - GET WEATHER
+
 app.get('/', async (req, res) => {
     let data = await getWeather();
     console.log(data);
@@ -42,27 +45,12 @@ app.get('/', async (req, res) => {
     let set = new Date(sunset);
     let humanset = set.toLocaleString();
     
-   
-
     //  ================== >>>  
     res.render('index', {location, country, desc, iconcode, temp, feels, humanrise, humanset, iconcode, iconimg });
 });
 
-
 /////////////////////////////////////////////////////////////////////////////////
-//  NUMBER TWO - NEW YORK TIMES    IOF IT FECKING WOULD WORK
-app.get('/', async (req, res) => {
-    let data = await newYork();
-    console.log(data);
-    
-
-    //  ================== >>>  
-    res.render('index', { });
-});
-
-
-/////////////////////////////////////////////////////////////////////////////////
-//  NUMBER THREE -  NEWS
+//  NUMBER TWO -  NEWS
 
 app.get('/', async (req, res) => {
     let data = await getNews();
@@ -73,10 +61,18 @@ app.get('/', async (req, res) => {
     res.render('index', { });
 });
 
-
 /////////////////////////////////////////////////////////////////////////////////
+//  NUMBER THREE - NEW YORK TIMES
 
+app.get('/', async (req, res) => {
+    let data = await newYork();
+    console.log(data);
+    
 
+    //  ================== >>>  
+    res.render('index', { });
+});
+/////////////////////////////////////////////////////////////////////////////////
 
 app.listen(3000, ()=>{
     console.log('Server listening on port 3000');
@@ -84,8 +80,8 @@ app.listen(3000, ()=>{
 
 
 
-
-
+/////////////////////////////
+// npm i body-parser
 
 
 
