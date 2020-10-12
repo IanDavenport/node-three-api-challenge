@@ -5,8 +5,8 @@ const path = require('path');
 
 
 // const getWeather = require('./lib/getWeather');
-const getNews = require('./lib/getNews');
-// const dunno = require('./lib/dunno');
+// const getNews = require('./lib/getNews');
+const trains = require('./lib/trains');
 
 const app = express();
 
@@ -52,35 +52,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 //  NUMBER TWO -  NEWS
 //  ===================
 
-app.get('/', async (req, res) => {
-    let data = await getNews();
-    console.log(data);
+// app.get('/', async (req, res) => {
+//     let data = await getNews();
+//     console.log(data);
     
-    let total = data.totalResults;          // RETURNS NUMBER OF HEADLINES VALUE
-    let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
-    let news = data.articles[random].title;      // RETURNS RANDOM HEADLINE
-    let storyurl = data.articles[random].url;    // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE)
-    
-
-    //  ================== >>>  
-    res.render('index', { total, news, storyurl, random });
-});
+//     let total = data.totalResults;          // RETURNS NUMBER OF HEADLINES VALUE
+//     let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
+//     let news = data.articles[random].title;      // RETURNS RANDOM HEADLINE
+//     let storyurl = data.articles[random].url;    // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE)
+//     //  ================== >>>  
+//     res.render('index', { total, news, storyurl, random });
+// });
 
 
 
 /////////////////////////////////////////////////////////////////////////////////
-//  NUMBER THREE - DON'T KNOW WHAT THIS WILL BE YET
-//  ===============================================
+//  NUMBER THREE - TRAINS
+//  =====================
 
-
-// app.get('/', async (req, res) => {
-//     let data = await dunno();
-//     console.log(data);
+app.get('/', async (req, res) => {
+    let data = await trains();
+    console.log(data);
     
+    let station = data.member[0].name;
+    let source = data.source;
+    let stationcode = data.member[0].station_code;
 
-//     //  ================== >>>  
-//     res.render('index', { });
-// });
+
+
+    //  ================== >>>  
+    res.render('index', { source, station, stationcode });
+});
 
 /////////////////////////////////////////////////////////////////////////////////
 
