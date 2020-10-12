@@ -22,12 +22,33 @@
 
 <hr>
 <br>
-<h2>UK news Headlines</h2>
-
+<h2>UK Random News story</h2>
+<br>
 <h3>Number of stories: {{ total }} </h3>
+<h3>Random number: {{ random }} </h3>
+
 <h3> {{ news }} </h3>
+<h3> {{ storyurl }} </h3>
+<a href={{storyurl}}></a>
 
 
+
+{{!-- <ul>
+    {{#each relevantData as |data|}}
+    {{#if @last}}
+    {{@key}}
+
+    {{#each this}}
+    <ul>
+        <li>{{this}}</li>
+    </ul>
+    {{/each}}
+
+    {{else}}
+    <li>{{@key}} : {{data}}</li>
+    {{/if}}
+    {{/each}}
+</ul> --}}
 
 
 

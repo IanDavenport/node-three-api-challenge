@@ -56,14 +56,14 @@ app.get('/', async (req, res) => {
     let data = await getNews();
     console.log(data);
     
-
     let total = data.totalResults;          // RETURNS NUMBER OF HEADLINES VALUE
-    let news = data.articles[0].title;       // RETURNS 1ST HEADLINE
-   
-
+    let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
+    let news = data.articles[random].title;      // RETURNS RANDOM HEADLINE
+    let storyurl = data.articles[random].url;    // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE)
+    
 
     //  ================== >>>  
-    res.render('index', { total, news, });
+    res.render('index', { total, news, storyurl, random });
 });
 
 
