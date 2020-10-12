@@ -74,14 +74,19 @@ app.get('/', async (req, res) => {
     let data = await trains();
     console.log(data);
     
-    let station = data.member[0].name;
-    let source = data.source;
-    let stationcode = data.member[0].station_code;
+
+    let date = data.date;
+    let time = data.time_of_day;
+    let stationname = data.station_name;
+    let stationcode = data.station_code
+
+    
+    let departures = data.all;
 
 
 
     //  ================== >>>  
-    res.render('index', { source, station, stationcode });
+    res.render('index', { date, time, stationname, stationcode, departures });
 });
 
 /////////////////////////////////////////////////////////////////////////////////

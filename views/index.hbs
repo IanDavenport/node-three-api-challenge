@@ -27,9 +27,9 @@
 <h3>Number of stories: {{ total }} </h3>
 <h3>Random story number: {{ random }} </h3>
 
-<h3> {{ news }} </h3>
+{{!-- <h3> {{ news }} </h3>
 <h3> {{ storyurl }} </h3>
-<a href={{storyurl}}></a>
+<a href={{storyurl}}></a> --}}
 
 
 {{!-- <ul>
@@ -54,12 +54,16 @@
 <hr>
 <h2>Trains...</h2>
 
-<h4>This was supposed to be a live station feed.... humph</h4>
+<h4>Live train station Departures feed ....</h4>
 
-<h3>Source: {{ source }} </h3>
-<h3>Station: {{ station }}</h3>
-<h3>Station code: {{ stationcode }} </h3>
+<h3> Date: {{ date }} </h3>
+<h3> Time: {{ time }} </h3>
+<h3> Station Name: {{ stationname }} </h3>
+<h3> Station Code: {{ stationcode }} </h3>
 
+<br>
+<h3> something:  {{ stationname  }} </h3>
+<h3> something else: {{ stationname }} </h3>
 
 
 <br><br>
