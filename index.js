@@ -74,29 +74,23 @@ app.get('/', async (req, res) => {
     let data = await trains();
     console.log(data);
     
+    let date = data.date;                   //  WORKS
+    let time = data.time_of_day;            //  WORKS
+    let stationname = data.station_name;    //  WORKS
+    let stationcode = data.station_code;    //  WORKS
 
-    let date = data.date;
-    let time = data.time_of_day;
-    let stationname = data.station_name;
-    let stationcode = data.station_code
-
-    
-    let departures = data.all;
-
-
-
+    let operatorname = data.departures.all[0].operator_name;   //  WORKS
+    let platform = data.departures.all[0].platform;            //  WORKS
+    let status = data.departures.all[0].status;                //  WORKS
+    let departure_time = data.departures.all[0].aimed_departure_time;   //  WORKS
+    let destination = data.departures.all[0].destination_name;          //  WORKS
     //  ================== >>>  
-    res.render('index', { date, time, stationname, stationcode, departures });
+    res.render('index', { date, time, stationname, stationcode, operatorname, platform, departure_time, destination, status });
 });
 
 /////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-app.listen(3000, ()=>{
+app.listen(3000, () =>{
     console.log('Server listening on port 3000');
 });
 
