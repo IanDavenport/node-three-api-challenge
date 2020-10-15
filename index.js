@@ -1,15 +1,31 @@
+
 require('dotenv').config();     // THIS IS WHERE THE API KEYS ARE STORED SO CANNOT BE SEEN BY ANYONE
 const express = require('express');
 const hbs = require('express-handlebars');
 const path = require('path');
 
 
+//////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+// const bodyParser = require('body-parser');
+//////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+
+
 const getWeather = require('./lib/getWeather');
 const getNews = require('./lib/getNews');
 const trains = require('./lib/trains');
 
-
 const app = express();
+
+
+//////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+// const fetch = require('node-fetch'); 
+// app.use(bodyParser.urlencoded({extended: false})); 
+// app.use(bodyParser.json());
+//////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+
+
+
+
 
 app.engine('.hbs', hbs({
     extname: '.hbs',
@@ -46,7 +62,25 @@ app.use(express.static(path.join(__dirname, 'public')));
     
     //  ================== >>>  
     res.render('index', {location, country, desc, iconcode, temp, feels, humanrise, humanset, iconcode, iconimg });
+    
+
+    
+   //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+    // app.get('/index', (req, res) => { 
+    //     res.render('weather');
+    // });
+
+    // app.post('/index', (req, res) => { 
+    //     console.log(req.body); 
+    //     res.render('weather');
+    // });
+    //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+
+
 });
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -60,11 +94,25 @@ app.get('/news', async (req, res) => {
     let total = data.totalResults;                  // RETURNS NUMBER OF HEADLINES VALUE
     let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
     let news = data.articles[random].title;         // RETURNS RANDOM HEADLINE
-            //  THE ABOVE  .title  APPPEARS TO CAUSE AN ISSUE IN CONSOLE
+                                    //  THE ABOVE  .title  APPPEARS TO CAUSE AN ISSUE IN CONSOLE
     let storyurl = data.articles[random].url;       // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE... YET)
     //  ================== >>>  
     res.render('news', { total, news, storyurl, random });
+
+
+    // render () {
+    //     const stories = this.state.XXXX.map((
+    //         XXXX, index) => {return < XXXX.news} url = {XXXX.storyurl} key = {index} />
+    //     ))
+    //         return(
+    //             {stories}
+    //         ) 
+    // }
+
 });
+
+
+
 
 
 
@@ -91,6 +139,12 @@ app.get('/trains', async (req, res) => {
 });
 
 /////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
 
 app.listen(3000, () =>{
     console.log('Server listening on port 3000');
