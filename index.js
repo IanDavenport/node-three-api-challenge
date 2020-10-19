@@ -109,41 +109,34 @@ app.get('/news', async (req, res) => {
 
 app.get('/trains', async (req, res) => {
     let data = await trains();
-    // console.log(data);
-    let trains = [ ];
-    for (const story of data.departures.all) { 
-        trains.push({
-            operatorname: data.departures.all[0].operator_name,
-            platform: data.departures.all[0].platform,
-            status: data.departures.all[0].status,
-            departure_time: data.departures.all[0].aimed_departure_time,
-            destination: data.departures.all[0].destination_name
-
+    console.log(data);
+    let departures = [ ];
+    for (const train of data.departures.all) { 
+        departures.push({
+            operatorname: train.operator_name,
+            platform: train.platform,
+            status: train.status,
+            departure_time: train.aimed_departure_time,
+            destination: train.destination_name
         });
     }
-    console.log(services);
-    //  ##  ABOVE NEEDS WORK ##
-
-
+    console.log(departures);
 
 
     // THE BELOW WORKS - COMMENTED TO GET THE ABOVE LISTING WORKING    
-    // let date = data.date;                   
-    // let time = data.time_of_day;            
-    // let stationname = data.station_name;    
-    // let stationcode = data.station_code;   
-
+    let date = data.date;                   
+    let time = data.time_of_day;            
     // let operatorname = data.departures.all[0].operator_name;   
     // let platform = data.departures.all[0].platform;            
     // let status = data.departures.all[0].status;                
     // let departure_time = data.departures.all[0].aimed_departure_time;   
     // let destination = data.departures.all[0].destination_name;          
     //  ================== >>>  
-    res.render('trains', { date, time, stationname, stationcode, operatorname, platform, departure_time, destination, status });
+    // res.render('trains', {date, time,operatorname, platform, status, departure_time, destination });
+    res.render('trains', {date, time, departures });
 });
 
 /////////////////////////////////////////////////////////////////////////////////
-
 
 
 app.listen(3000, () =>{
