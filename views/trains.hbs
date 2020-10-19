@@ -5,12 +5,12 @@ Click here for the <a href="/news">News page</a>
 Click here for the <a href="/index">Weather page</a>
 
 
-<h2>Live train station Departures feed ....</h2>
+<h2>Piccadilly Station Manchester Live train Departures</h2>
 
+{{!-- <h3> Station Name: {{ stationname }} </h3>
+<h3> Station Code: {{ stationcode }} </h3> --}}
 <h3> Today: {{ date }} </h3>
 <h3> Current Time: {{ time }} </h3>
-<h3> Station Name: {{ stationname }} </h3>
-<h3> Station Code: {{ stationcode }} </h3>
 <hr>
 
 <h3> Operator: {{ operatorname }}</h3>
@@ -18,11 +18,15 @@ Click here for the <a href="/index">Weather page</a>
 <h3> Destination: {{ destination }} </h3>
 <h3> Plat: {{ platform }} </h3>
 <h3> Status: {{ status }} </h3>
-
 <hr>
 
 
-
+{{!-- {{#each stories}}
+<ul style="list-style-type:none;">
+    <li style="font-weight: bold">{{this.title}}</li>
+    <li> <a href="{{this.url}}">{{this.url}}</a></li>
+</ul>
+{{/each}} --}}
 
 
 

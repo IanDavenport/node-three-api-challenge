@@ -1,21 +1,27 @@
 
+<link rel="stylesheet" href="news.css">
+
+
 Click here for the <a href="/news">News page</a>
 <br>
 Click here for the <a href="/trains">Trains page</a>
 
 
-<h2>The weather in Manchester today is mostly......</h2>
+<h2>The weather today ......</h2>
 <br>
 <h3>Location: {{ location }}</h3>
 <h3>Country: {{ country }}</h3>
 <h3>Weather: {{ desc }}</h3>
-<h3>URL: {{iconimg}} </h3>
 
+
+
+<h3>URL: {{iconimg}} </h3>
 <h3>Weather image code: {{ iconcode }} </h3>
-<img src="http://openweathermap.org/img/w/" + {{iconcode}} + ".png">
-<script src="http://openweathermap.org/img/w/" + {{iconcode}} + ".png"></script>
-<script src="http://openweathermap.org/img/w/" + ((iconcode)) + ".png"></script>
-<script src="http://openweathermap.org/img/w/" + (iconcode) + ".png"></script>
+
+<img src="http://openweathermap.org/img/w/" + {{ iconcode }} + ".png">
+<script src="http://openweathermap.org/img/w/" + {{ iconcode }} + ".png"></script>
+
+
 
 <h3>Temperature: {{ temp }} </h3>
 <h3>Feels like: {{ feels }} </h3>
@@ -30,14 +36,16 @@ Click here for the <a href="/trains">Trains page</a>
 <button>Submit your request</button> --}}
 
 <div>
-    <h4>Weather request</h4>
+    <h4>Request weather for another location:</h4>
     <form action="/index" method="POST">
 
     <label for="city">city: </label>
     <input type="text" name="city">
+
     <label for="code">country code: </label>
     <input type="text" name="country">
-    <input type="submit" value="submit">
+
+    <input type="submit" value="Submit">
 
     </form>
 </div>

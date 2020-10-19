@@ -4,11 +4,9 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const path = require('path');
 
-
 //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
 // const bodyParser = require('body-parser');
 //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
-
 
 const getWeather = require('./lib/getWeather');
 const getNews = require('./lib/getNews');
@@ -16,15 +14,11 @@ const trains = require('./lib/trains');
 
 const app = express();
 
-
 //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
 // const fetch = require('node-fetch'); 
 // app.use(bodyParser.urlencoded({extended: false})); 
 // app.use(bodyParser.json());
 //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
-
-
-
 
 
 app.engine('.hbs', hbs({
@@ -63,9 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
     //  ================== >>>  
     res.render('index', {location, country, desc, iconcode, temp, feels, humanrise, humanset, iconcode, iconimg });
     
-
     
-   //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
+   //////  ADDED CODE SINCE LAST WORKED OK ////// 
     // app.get('/index', (req, res) => { 
     //     res.render('weather');
     // });
@@ -74,12 +67,9 @@ app.use(express.static(path.join(__dirname, 'public')));
     //     console.log(req.body); 
     //     res.render('weather');
     // });
-    //////  ADDED CODE SINCE LAST WORKED OK - DONE SOMETHING WRONG NOW ////// 
-
+    //////  ADDED CODE SINCE LAST WORKED OK //////
 
 });
-
-
 
 
 
@@ -89,30 +79,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/news', async (req, res) => {
     let data = await getNews();
-    console.log(data);
-    
-    let total = data.totalResults;                  // RETURNS NUMBER OF HEADLINES VALUE
-    let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
-    let news = data.articles[random].title;         // RETURNS RANDOM HEADLINE
-                                    //  THE ABOVE  .title  APPPEARS TO CAUSE AN ISSUE IN CONSOLE
-    let storyurl = data.articles[random].url;       // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE... YET)
-    //  ================== >>>  
-    res.render('news', { total, news, storyurl, random });
+    let stories = [ ];
+    for (const story of data.articles) { 
+        stories.push({
+            title: story.title,
+            url: story.url
+        });
+    }
+    console.log(stories);
 
 
-    // render () {
-    //     const stories = this.state.XXXX.map((
-    //         XXXX, index) => {return < XXXX.news} url = {XXXX.storyurl} key = {index} />
-    //     ))
-    //         return(
-    //             {stories}
-    //         ) 
-    // }
+    //https://handlebarsjs.com/guide/builtin-helpers.html#each
+    res.render('news', {stories});
 
+    //  DON'T DELETE - THIS FOLLOWIMG WORKED FOR A SINGLE STORY ==>
+    // let total = data.totalResults;                  // RETURNS NUMBER OF HEADLINES VALUE
+    // let random = Math.floor(Math.random() * total); // GENERATES RANDOM NUMBER
+    // let news = data.articles[random].title;         // RETURNS RANDOM HEADLINE
+    //                                 //  THE ABOVE  .title  APPPEARS TO CAUSE AN ISSUE IN CONSOLE
+    // let storyurl = data.articles[random].url;       // CAPTURES THE RANDOM STORY URL (BUT NOT CLICKABLE... YET)
+    // //  ================== >>>  
 });
-
-
-
 
 
 
@@ -122,27 +109,40 @@ app.get('/news', async (req, res) => {
 
 app.get('/trains', async (req, res) => {
     let data = await trains();
-    console.log(data);
-    
-    let date = data.date;                   
-    let time = data.time_of_day;            
-    let stationname = data.station_name;    
-    let stationcode = data.station_code;   
+    // console.log(data);
+    let trains = [ ];
+    for (const story of data.departures.all) { 
+        trains.push({
+            operatorname: data.departures.all[0].operator_name,
+            platform: data.departures.all[0].platform,
+            status: data.departures.all[0].status,
+            departure_time: data.departures.all[0].aimed_departure_time,
+            destination: data.departures.all[0].destination_name
 
-    let operatorname = data.departures.all[0].operator_name;   
-    let platform = data.departures.all[0].platform;            
-    let status = data.departures.all[0].status;                
-    let departure_time = data.departures.all[0].aimed_departure_time;   
-    let destination = data.departures.all[0].destination_name;          
+        });
+    }
+    console.log(services);
+    //  ##  ABOVE NEEDS WORK ##
+
+
+
+
+    // THE BELOW WORKS - COMMENTED TO GET THE ABOVE LISTING WORKING    
+    // let date = data.date;                   
+    // let time = data.time_of_day;            
+    // let stationname = data.station_name;    
+    // let stationcode = data.station_code;   
+
+    // let operatorname = data.departures.all[0].operator_name;   
+    // let platform = data.departures.all[0].platform;            
+    // let status = data.departures.all[0].status;                
+    // let departure_time = data.departures.all[0].aimed_departure_time;   
+    // let destination = data.departures.all[0].destination_name;          
     //  ================== >>>  
     res.render('trains', { date, time, stationname, stationcode, operatorname, platform, departure_time, destination, status });
 });
 
 /////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 
 

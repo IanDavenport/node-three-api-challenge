@@ -1,4 +1,5 @@
 
+
 Click here for the <a href="/index">Weather page</a>
 <br>
 Click here for the <a href="/trains">Trains page</a>
@@ -7,31 +8,13 @@ Click here for the <a href="/trains">Trains page</a>
 <h2>UK News </h2>
 <hr>
 <br>
-<h3>Number of stories: {{ total }} </h3>
-<h3>Random story number: {{ random }}</h3>
 
-<h3> {{ news }} </h3>
-<h3> {{ storyurl }} </h3>
-<a href= {{ storyurl }}></a>
-
-
-
-{{!-- <ul>
-    {{#each relevantData as |data|}}
-    {{#if @last}}
-    {{@key}}
-
-    {{#each this}}
-    <ul>
-        <li>{{this}}</li>
-    </ul>
-    {{/each}}
-
-    {{else}}
-    <li>{{@key}} : {{data}}</li>
-    {{/if}}
-    {{/each}}
-</ul> --}}
+{{#each stories}}
+<ul style="list-style-type:none;">
+    <li style="font-weight: bold">{{this.title}}</li>
+    <li> <a href="{{this.url}}" target="_blank">{{this.url}}</a></li>
+</ul>
+{{/each}}
 
 
 
