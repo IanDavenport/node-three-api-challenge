@@ -5,7 +5,7 @@ Click here for the <a href="/news">News page</a>
 Click here for the <a href="/index">Weather page</a>
 
 
-<h2>Piccadilly Station Manchester Live train Departures</h2>
+<h2>Piccadilly Station Manchester live train DEPARTURES</h2>
 
 <h3> Today: {{ date }} </h3>
 <h3> Current Time: {{ time }} </h3>
@@ -13,27 +13,31 @@ Click here for the <a href="/index">Weather page</a>
 <!-- LEAVE ABOVE AS IS -->
 
 
-<!-- START OF TEMPLATE -->
-<h3> Operator: {{ operatorname }}</h3>
+<!-- TEMPLATE -->
+{{!-- <h3> Operator: {{ operatorname }}</h3>
 <h3> Time: {{ departure_time}} </h3>
 <h3> Destination: {{ destination }} </h3>
-<h3> Plat: {{ platform }} </h3>
+<h3> Platform: {{ platform }} </h3>
 <h3> Status: {{ status }} </h3>
-<hr>
+<hr> --}}
 <!-- END OF TEMPLATE -->
 
 
 
 {{#each departures}}
 <ul style="list-style-type:none;">
-    <li>{{this.operatorname}}</li>
-    <li>{{this.platform}}</li>
-    <li>{{this.status}}</li> 
-    <li>{{this.departure_time}}</li>
-    <li>{{this.destination}}</li>
+    <br>
+    <li><strong>Departure Time: {{this.departure_time}} </strong></li>
+    <li><strong>Operator: {{this.operatorname}} </strong></li>
+    <li><strong>Destination: {{this.destination}} </strong></li>
+    <li><strong>Platform: {{this.platform}} </strong></li>
+    <li><strong>Status: {{this.status}} </strong></li> 
+    <br>
+    <hr>
 </ul>
 {{/each}}
 
+<br><br>
 
 
 
