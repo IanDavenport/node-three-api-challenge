@@ -116,6 +116,7 @@ app.get('/trains', async (req, res) => {
             operatorname: train.operator_name,
             platform: train.platform,
             status: train.status,
+            arrival: train.aimed_arrival_time,
             departure_time: train.aimed_departure_time,
             destination: train.destination_name
         });

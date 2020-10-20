@@ -1,6 +1,4 @@
 
-<link rel="stylesheet" href="news.css">
-
 
 Click here for the <a href="/news">News page</a>
 <br>
@@ -22,7 +20,6 @@ Click here for the <a href="/trains">Trains page</a>
 <script src="http://openweathermap.org/img/w/" + {{ iconcode }} + ".png"></script>
 
 
-
 <h3>Temperature: {{ temp }} </h3>
 <h3>Feels like: {{ feels }} </h3>
 <h3>Sunrise: {{ humanrise }} </h3>
@@ -30,13 +27,8 @@ Click here for the <a href="/trains">Trains page</a>
 <br><br><br><br>
 
 
-
-{{!-- <input type="text">
-<input type="text">
-<button>Submit your request</button> --}}
-
 <div>
-    <h4>Request weather for another location:</h4>
+    <h3>Request weather for another location:</h3>
     <form action="/index" method="POST">
 
     <label for="city">city: </label>

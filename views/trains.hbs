@@ -1,12 +1,9 @@
 
-
 Click here for the <a href="/news">News page</a>
 <br>
 Click here for the <a href="/index">Weather page</a>
 
-
-<h2>Piccadilly Station Manchester live train DEPARTURES</h2>
-
+<h2>Piccadilly Station Manchester -- live train DEPARTURES</h2>
 <h3> Today: {{ date }} </h3>
 <h3> Current Time: {{ time }} </h3>
 <hr>
@@ -23,14 +20,14 @@ Click here for the <a href="/index">Weather page</a>
 <!-- END OF TEMPLATE -->
 
 
-
 {{#each departures}}
 <ul style="list-style-type:none;">
     <br>
-    <li><strong>Departure Time: {{this.departure_time}} </strong></li>
+    <li><strong>Departs: {{this.departure_time}} </strong></li>
     <li><strong>Operator: {{this.operatorname}} </strong></li>
     <li><strong>Destination: {{this.destination}} </strong></li>
     <li><strong>Platform: {{this.platform}} </strong></li>
+    <li><strong>(expected): {{this.arrival}} </strong></li>
     <li><strong>Status: {{this.status}} </strong></li> 
     <br>
     <hr>
