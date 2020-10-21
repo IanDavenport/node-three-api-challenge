@@ -11,14 +11,10 @@ Click here for the <a href="/trains">Trains page</a>
 <h3>Country: {{ country }}</h3>
 <h3>Weather: {{ desc }}</h3>
 
+{{!-- <h3>URL: {{iconimg}} </h3> --}}
+{{!-- <h3>Weather image code: {{ iconcode }} </h3> --}}
 
-
-<h3>URL: {{iconimg}} </h3>
-<h3>Weather image code: {{ iconcode }} </h3>
-
-<img src="http://openweathermap.org/img/w/" + {{ iconcode }} + ".png">
-<script src="http://openweathermap.org/img/w/" + {{ iconcode }} + ".png"></script>
-
+<img src="http://openweathermap.org/img/w/{{iconcode}}.png">
 
 <h3>Temperature: {{ temp }} </h3>
 <h3>Feels like: {{ feels }} </h3>
