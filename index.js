@@ -58,16 +58,14 @@ app.use(express.static(path.join(__dirname, 'public')));
     res.render('index', {location, country, desc, iconcode, temp, feels, humanrise, humanset, iconcode, iconimg });
     
     
-   //////  ADDED CODE SINCE LAST WORKED OK ////// 
-    // app.get('/index', (req, res) => { 
-    //     res.render('weather');
-    // });
 
-    // app.post('/index', (req, res) => { 
-    //     console.log(req.body); 
-    //     res.render('weather');
-    // });
-    //////  ADDED CODE SINCE LAST WORKED OK //////
+    //////   USER LOCATION SELECTION CODE GOES HERE  ////// 
+
+
+
+
+
+    //////   USER LOCATION SELECTION CODE GOES HERE  ////// 
 
 });
 
